@@ -5,14 +5,15 @@ var shrink, shake, flowers, intensity;
 function setup() {
     createCanvas(400, 400);
     var root = new Branch(createVector(width / 2, height), createVector(width / 2, height - 100));
-    shake = createCheckbox('Shaking (Use slider for intensity)', false);
-    shake.position(450, 300);
+    shake = createCheckbox('Shaking (Use slider for intensity)\n\n', false);
+	
+    //shake.position(450, 300);
     intensity = createSlider(0.1, 2, 0.5, 0);
-    intensity.position(450, 330);
+    //intensity.position(450, 330);
     shrink = createSlider(0.30, 1, 0.75, 0);
     shrink.parent("shrink");
     flowers = createCheckbox("Flowers", false);
-    flowers.position(450, 360);
+    //flowers.position(450, 360);
     tree[0] = root;
 }
 
