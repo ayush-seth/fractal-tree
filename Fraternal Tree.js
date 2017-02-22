@@ -9,12 +9,14 @@ function setup() {
     var root = new Branch(createVector(width / 2, height), createVector(width / 2, height - 100));
     tree[0] = root;
     shake = createCheckbox("Shaking", false);
-    shake.parent("shake");
+    shake.position(100, 350);
 
     intensity = createSlider(0.1, 2, 0.5, 0);
     intensity.parent("shake");
+    
     flsize = createSlider(5, 15, 10, 0);
     flsize.parent("flsize");
+    
     shrink = createSlider(0.30, 1, 0.75, 0);
     shrink.parent("shrink");
 
