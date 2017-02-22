@@ -1,20 +1,31 @@
 var tree = [];
+var flowers = [];
 var branchNumber = 0;
-var shrink, shake, flowers, intensity;
+var shrink, shake, intensity, grow = false,
+    shed, grav, flsize;
 
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(600, 600);
     var root = new Branch(createVector(width / 2, height), createVector(width / 2, height - 100));
+    tree[0] = root;
     shake = createCheckbox('Shaking (Use slider for intensity)\n\n', false);
-	
-    //shake.position(450, 300);
+
     intensity = createSlider(0.1, 2, 0.5, 0);
-    //intensity.position(450, 330);
+    flsize = createSlider(5, 15, 10, 0);
+    flsize.parent("flsize");
     shrink = createSlider(0.30, 1, 0.75, 0);
     shrink.parent("shrink");
-    flowers = createCheckbox("Flowers", false);
-    //flowers.position(450, 360);
-    tree[0] = root;
+
+    var sheds = createButton("SHED FLOWERS");
+    sheds.position(100, 400);
+    sheds.mousePressed(shedFlowers);
+
+    var grows = createButton("GROW FLOWERS")
+    grows.position(100, 370);
+    grows.mousePressed(growFlowers);
+
+    grav = createVector(0, 2);
+
 }
 
 function draw() {
@@ -24,14 +35,40 @@ function draw() {
     text("Number of branches = " + branchNumber, 15, 30);
     for (var i = 0; i < tree.length; i++) {
         tree[i].show();
+        if (tree[i].flower)
+            tree[i].flower.size = flsize.value();
         if (shake.checked()) {
             tree[i].shake(intensity.value());
         }
-        if (flowers.checked() && !tree[i].grown) {
+        if (!tree[i].grown && grow && tree[i].flower) {
             tree[i].growFlower();
+        }
+        if (shed && tree[i].flower && !tree[i].flower.done) {
+            console.log("shed");
+            tree[i].flower.shed();
+            tree[i].flower.applyForce(grav);
         }
     }
 }
+
+function shedFlowers() {
+    if (grow)
+        shed = true;
+    flowers.splice(0, flowers.length);
+}
+
+function growFlowers() {
+    grow = true;
+    for (var i = 0; i < tree.length; i++) {
+        if (!tree[i].grown) {
+            var flower = new Flower(tree[i]);
+            flowers.push(flower);
+            tree[i].setFlower(flower);
+        }
+    }
+    shed = false;
+}
+
 
 function mousePressed() {
 
