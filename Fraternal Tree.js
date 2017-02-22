@@ -48,7 +48,6 @@ function draw() {
             tree[i].growFlower();
         }
         if (shed && tree[i].flower && !tree[i].flower.done) {
-            console.log("shed");
             tree[i].flower.shed();
             tree[i].flower.applyForce(grav);
         }
