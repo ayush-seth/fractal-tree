@@ -2,11 +2,15 @@ function Branch(start, end) {
     this.start = start;
     this.end = end;
     this.grown = false;
-
+    this.flower = null;
     this.shake = function(intensity) {
 
         this.end.x = constrain(this.end.x + random(-intensity, intensity), this.end.x - 2, this.end.x + 2);
         this.end.y = constrain(this.end.y + random(-intensity, intensity), this.end.y - 2, this.end.y + 2);
+    }
+
+    this.setFlower = function(flower) {
+        this.flower = flower;
     }
 
     this.show = function() {
@@ -37,9 +41,9 @@ function Branch(start, end) {
 
     this.growFlower = function() {
 
-        noStroke();
-        fill(255, 0, 100, 90);
-        ellipse(this.end.x, this.end.y, 10, 10);
-
+        this.flower.draw();
+        this.flower.update();
     }
+
+
 }
