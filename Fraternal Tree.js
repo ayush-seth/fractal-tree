@@ -9,7 +9,7 @@ function setup() {
     var root = new Branch(createVector(width / 2, height), createVector(width / 2, height - 100));
     tree[0] = root;
     shake = createCheckbox("Shaking", false);
-    shake.position(100, 350);
+    shake.position(100, 330);
 
     intensity = createSlider(0.1, 2, 0.5, 0);
     intensity.parent("shake");
