@@ -11,6 +11,7 @@ function setup() {
     shake = createCheckbox('Shaking (Use slider for intensity)\n\n', false);
 
     intensity = createSlider(0.1, 2, 0.5, 0);
+    intensity.parent("shake");
     flsize = createSlider(5, 15, 10, 0);
     flsize.parent("flsize");
     shrink = createSlider(0.30, 1, 0.75, 0);
