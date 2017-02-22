@@ -8,7 +8,8 @@ function setup() {
     createCanvas(600, 600);
     var root = new Branch(createVector(width / 2, height), createVector(width / 2, height - 100));
     tree[0] = root;
-    shake = createCheckbox('Shaking (Use slider for intensity)\n\n', false);
+    shake = createCheckbox("Shaking", false);
+    shake.parent("shake");
 
     intensity = createSlider(0.1, 2, 0.5, 0);
     intensity.parent("shake");
