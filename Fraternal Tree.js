@@ -2,7 +2,7 @@ var tree = [];
 var flowers = [];
 var branchNumber = 0;
 var shrink, shake, intensity, grow = false,
-    shed, gravity, flsize, grav, wind_dir, windcheck;
+    shed, grav, flsize;
 
 function setup() {
     createCanvas(600, 600);
@@ -28,32 +28,15 @@ function setup() {
     grows.position(100, 370);
     grows.mousePressed(growFlowers);
 
-    gravity = createVector(0, 0.3);
-    grav = createCheckbox("Gravity", true);
-
-    windcheck = createCheckbox("Wind ON/OFF", false);
-
-    wind_dir = createRadio();
-    wind_dir.option("Left");
-    wind_dir.option("Right");
-    wind_dir.value("Right");
+    grav = createVector(0, 2);
 
 }
-var wind;
 
 function draw() {
-    
     background(51);
     fill(255);
     textSize(24);
     text("Number of branches = " + branchNumber, 15, 30);
-    
-    if(windcheck.checked()) {
-        if(wind_dir.value() == "Left")
-            wind = createVector(-0.2, 0);
-        else if(wind_dir.value() == "Right")
-            wind = createVector(0.2, 0);        
-    }
     for (var i = 0; i < tree.length; i++) {
         tree[i].show();
         if (tree[i].flower)
@@ -64,15 +47,10 @@ function draw() {
         if (!tree[i].grown && grow && tree[i].flower) {
             tree[i].growFlower();
         }
-        if (shed && tree[i].flower) {
-            if(grav.checked()) {
-                tree[i].flower.applyForce(gravity);
-            }
-            if(windcheck.checked())
-                tree[i].flower.applyForce(wind);         
-            if(!tree[i].flower.done)
-                tree[i].flower.shed();
-        }       
+        if (shed && tree[i].flower && !tree[i].flower.done) {
+            tree[i].flower.shed();
+            tree[i].flower.applyForce(grav);
+        }
     }
 }
 

@@ -21,7 +21,7 @@ function Flower(branch) {
 
         this.acceleration.mult(0);
         if (this.done)
-            this.lifespan-=0.8;
+            this.lifespan -= 2;
     }
     this.shed = function() {
         this.applyForce(createVector(random(-1, 1), random(-1, -0.1)));
