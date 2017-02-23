@@ -2,7 +2,7 @@ var tree = [];
 var flowers = [];
 var branchNumber = 0;
 var shrink, shake, intensity, grow = false,
-    shed, grav, flsize;
+    shed, grav, flsize, wind;
 
 function setup() {
     createCanvas(600, 600);
@@ -28,8 +28,11 @@ function setup() {
     grows.position(100, 370);
     grows.mousePressed(growFlowers);
 
-    grav = createVector(0, 2);
+    grav = createCheckbox("Gravity", false);
+    grav.position(100, 310);
 
+    wind = createCheckbox("Wind", false);
+    wind.position(100, 290);
 }
 
 function draw() {
@@ -44,12 +47,20 @@ function draw() {
         if (shake.checked()) {
             tree[i].shake(intensity.value());
         }
+        if (wind.checked() && tree[i].flower && shed){
+            tree[i].flower.applyForce(createVector(0.08,0));
+        }
         if (!tree[i].grown && grow && tree[i].flower) {
             tree[i].growFlower();
         }
-        if (shed && tree[i].flower && !tree[i].flower.done) {
-            tree[i].flower.shed();
-            tree[i].flower.applyForce(grav);
+        // if (shed && tree[i].flower && !tree[i].flower.done) {
+        //     tree[i].flower.shed();           
+        // }
+        if(tree[i].flower && shed) {
+            if(grav.checked())
+               tree[i].flower.applyForce(createVector(0, 0.15));
+            if(!tree[i].flower.done)
+                tree[i].flower.shed();
         }
     }
 }
