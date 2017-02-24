@@ -3,9 +3,10 @@ var flowers = [];
 var branchNumber = 0;
 var shrink, shake, intensity, grow = false,
     shed, gravity, flsize, grav, wind_dir, windcheck;
+var cnv;
 
 function setup() {
-    createCanvas(600, 600);
+    cnv = createCanvas(600, 600);
     var root = new Branch(createVector(width / 2, height), createVector(width / 2, height - 100));
     tree[0] = root;
     shake = createCheckbox("Shaking", false);
@@ -48,6 +49,8 @@ function setup() {
     document.getElementById('cpicker').style.position = "absolute";
     document.getElementById('cpicker').style.left = "320px";
     document.getElementById('cpicker').style.top = "920px";
+	
+    cnv.mousePressed(branchIt);	
 }
 var wind;
 
@@ -104,14 +107,13 @@ function growFlowers() {
     shed = false;
 }
 function saveTree() {
-	saveCanvas("tree", "png");
+	saveCanvas(cnv, "tree", "png");
 
 }
 
 
-function mousePressed() {
+function branchIt() {
 
-    if (mouseX < width && mouseY < height && mouseX > 0 && mouseY > 0) {
         for (var i = tree.length - 1; i >= 0; i--) {
             if (!tree[i].grown) {
                 tree.push(tree[i].spawnA(shrink.value()));
@@ -121,4 +123,3 @@ function mousePressed() {
             tree[i].grown = true;
         }
     }
-}
