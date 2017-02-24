@@ -19,7 +19,8 @@
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 <style>
 	h1,
-	h2 {
+	h2,
+	h3 {
 		font-family: 'Exo 2', sans-serif;
 	}
 
@@ -56,20 +57,29 @@
 		New branch size(Relative to parent branch)
 	</div>
 	
-	<p>Select leaf color :
+	<p id="cpicker">Select leaf color :
 	<button id="colour" class="jscolor {valueElement:null,value:'00c42b'}" style="width:50px; height:20px;"></button>
 	</p>
-    
 
+    <h2>Update History :</h2>
+    <ul>
+		<li>Now you can save your creations as a png file</li>
+		<li>Added a colour picker for leaves</li>
+		<li>Added gravity and wind forces</li>
+	</ul>	
 
-	
 	<div id="shake">
 		Intensity of shaking
 	</div>
+
 	<div id="flsize">
 		Size of leaves
-	</div>
+	</div>	
+
 	<p>Currently working on bug : Creating new branches will make leaves disappear (They reappear if you grow them again)</p>
+
+	<h3>For smooth animations keep the branch number under 510</h3>
+	
 	<br><br>
 </body>
 <script>
