@@ -8,7 +8,10 @@ function Flower(branch) {
     this.lifespan = 255;
 
     this.draw = function() {
-        fill(255, 0, 110, this.lifespan);
+        
+        var colour = document.getElementById("colour").jscolor.rgb;
+        fill(colour[0],colour[1],colour[2], this.lifespan);
+        // fill(document.getElementById("colour").jscolor.toHEXString(),,,this.lifespan);
         noStroke();
         ellipse(this.pos.x, this.pos.y, this.size, this.size);
     }

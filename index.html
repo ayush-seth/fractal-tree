@@ -3,9 +3,9 @@
 
 <head>
 	<title>Fractal Tree Generator</title>
-	<script language="javascript" type="text/javascript" src="libraries\p5.js">
+	<script language="javascript" type="text/javascript" src="lib\p5\p5.js">
 	</script>
-	<script language="javascript" type="text/javascript" src="libraries\p5.dom.js">
+	<script language="javascript" type="text/javascript" src="lib\p5\p5.dom.js">
 	</script>
 	<script language="javascript" type="text/javascript" src="Fraternal Tree.js">
 	</script>
@@ -13,7 +13,8 @@
 	</script>
 	<script language="javascript" type="text/javascript" src="flower.js">
 	</script>
-</head>
+	<script language="javascript" type="text/javascript" src="lib\jscolor\jscolor.js">
+	</script>
 <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 <style>
@@ -38,6 +39,9 @@
 	div {
 		color: #fff;
 	}
+	p {
+		color: #fff;
+	}
 </style>
 
 <body>
@@ -46,18 +50,26 @@
 	<ul>
 		<li>Click on canvas to create branches.</li>
 		<li>Use the checkbox to control shaking</li>
-		<li>Use the buttons to grow and shed flowers</li>
+		<li>Use the buttons to grow and shed leaves</li>
 	</ul>
 	<div id="shrink">
 		New branch size(Relative to parent branch)
 	</div>
+	
+	<p>Select leaf color :
+	<button id="colour" class="jscolor {valueElement:null,value:'00c42b'}" style="width:50px; height:20px;"></button>
+	</p>
+    
+
+
+	
 	<div id="shake">
 		Intensity of shaking
 	</div>
 	<div id="flsize">
-		Size of flowers
+		Size of leaves
 	</div>
-	<p>Currently working on bug : Creating new branches will make flowers disappear (They reappear if you grow them again)</p>
+	<p>Currently working on bug : Creating new branches will make leaves disappear (They reappear if you grow them again)</p>
 	<br><br>
 </body>
 <script>

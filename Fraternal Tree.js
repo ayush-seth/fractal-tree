@@ -14,29 +14,33 @@ function setup() {
     intensity = createSlider(0.1, 2, 0.5, 0);
     intensity.parent("shake");
     
-    flsize = createSlider(5, 15, 10, 0);
+    flsize = createSlider(5, 15, 7, 0);
     flsize.parent("flsize");
     
     shrink = createSlider(0.30, 1, 0.75, 0);
     shrink.parent("shrink");
 
-    var sheds = createButton("SHED FLOWERS");
+    var sheds = createButton("SHED LEAVES");
     sheds.position(100, 400);
     sheds.mousePressed(shedFlowers);
 
-    var grows = createButton("GROW FLOWERS")
+    var grows = createButton("GROW LEAVES")
     grows.position(100, 370);
     grows.mousePressed(growFlowers);
 
     gravity = createVector(0, 0.3);
-    grav = createCheckbox("Gravity", true);
+    grav = createCheckbox("Gravity ON/OFF", true);
+    grav.position(100, 430);
 
     windcheck = createCheckbox("Wind ON/OFF", false);
+    windcheck.position(100, 460);   
 
     wind_dir = createRadio();
+    wind_dir.position(250, 460);
     wind_dir.option("Left");
     wind_dir.option("Right");
     wind_dir.value("Right");
+
 
 }
 var wind;
