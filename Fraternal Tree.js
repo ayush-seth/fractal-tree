@@ -47,8 +47,8 @@ function setup() {
     wind_dir.value("Right");
 
     document.getElementById('cpicker').style.position = "absolute";
-    document.getElementById('cpicker').style.left = "320px";
-    document.getElementById('cpicker').style.top = "920px";
+    document.getElementById('cpicker').style.left = "40px";
+    document.getElementById('cpicker').style.top = "990px";
 	
     cnv.mousePressed(branchIt);	
 }
