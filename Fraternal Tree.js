@@ -6,15 +6,16 @@ var shrink, shake, intensity, grow = false,
 var cnv;
 
 function setup() {
-    cnv = createCanvas(600, 600);
+    cnv = createCanvas(500, 500);	
     var root = new Branch(createVector(width / 2, height), createVector(width / 2, height - 100));
     tree[0] = root;
     shake = createCheckbox("Shaking", false);
-    shake.position(windowWidth-470, 1000);
-
+	shake.parent("shaking");
+    //shake.position(windowWidth-470, 1000);
+	
     intensity = createSlider(0.1, 2, 0.5, 0);
     intensity.parent("shake");
-    
+    cnv.parent("canvasParent");
     flsize = createSlider(5, 15, 7, 0);
     flsize.parent("flsize");
     
@@ -22,33 +23,29 @@ function setup() {
     shrink.parent("shrink");
 
     var sheds = createButton("Shed Leaves");
-    sheds.position(320, 1000);
     sheds.mousePressed(shedFlowers);
+	sheds.parent("butHolder");
 
-    var grows = createButton("Grow leaves")
-    grows.position(320, 970);
+    var grows = createButton("Grow leaves");   
     grows.mousePressed(growFlowers);
-
-    var save = createButton("Save Tree as png")
-    save.position(windowWidth-470, 1100);
+	grows.parent("butHolder");
+	
+    var save = createButton("Save Tree as png");   
     save.mousePressed(saveTree);
+	save.parent("butHolder");
 
     gravity = createVector(0, 0.3);
-    grav = createCheckbox("Gravity ON/OFF", true);
-    grav.position(windowWidth-470, 970);
+    grav = createCheckbox("Gravity", true);
+	grav.parent("gravity");
 
-    windcheck = createCheckbox("Wind ON/OFF", false);
-    windcheck.position(windowWidth-470, 1030);   
+    windcheck = createCheckbox("Wind", false);  
+	windcheck.parent("wind");
 
     wind_dir = createRadio();
-    wind_dir.position(windowWidth-470, 1060);
     wind_dir.option("Left");
     wind_dir.option("Right");
-    wind_dir.value("Right");
-
-    document.getElementById('cpicker').style.position = "absolute";
-    document.getElementById('cpicker').style.left = "40px";
-    document.getElementById('cpicker').style.top = "990px";
+    wind_dir.value("Right");    
+	wind_dir.parent("wind");
 	
     cnv.mousePressed(branchIt);	
 }
