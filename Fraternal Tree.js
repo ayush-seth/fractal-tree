@@ -109,7 +109,7 @@ function growFlowers()
     {
         if (!tree[i].grown)
         {
-            var flower = new Flower(tree[i]);
+            var flower = new Flower(tree[i].end);
             flowers.push(flower);
             tree[i].setFlower(flower);
         }
