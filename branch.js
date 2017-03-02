@@ -1,24 +1,29 @@
-function Branch(start, end) {
+function Branch(start, end)
+{
     this.start = start;
     this.end = end;
     this.grown = false;
     this.flower = null;
-    this.shake = function(intensity) {
+    Branch.prototype.shake = function (intensity)
+    {
 
         this.end.x = constrain(this.end.x + random(-intensity, intensity), this.end.x - 2, this.end.x + 2);
         this.end.y = constrain(this.end.y + random(-intensity, intensity), this.end.y - 2, this.end.y + 2);
     }
 
-    this.setFlower = function(flower) {
+    Branch.prototype.setFlower = function (flower)
+    {
         this.flower = flower;
     }
 
-    this.show = function() {
+    Branch.prototype.show = function ()
+    {
 
         stroke(255);
         line(this.start.x, this.start.y, this.end.x, this.end.y);
     }
-    this.spawnA = function(size) {
+    Branch.prototype.spawnA = function (size)
+    {
 
         var dir = p5.Vector.sub(this.end, this.start);
         dir.mult(size);
@@ -28,7 +33,8 @@ function Branch(start, end) {
         var right = new Branch(this.end, newEnd);
         return right;
     }
-    this.spawnB = function(size) {
+    Branch.prototype.spawnB = function (size)
+    {
 
         var dir = p5.Vector.sub(this.end, this.start);
         dir.mult(size);
@@ -39,7 +45,8 @@ function Branch(start, end) {
         return left;
     }
 
-    this.growFlower = function() {
+    Branch.prototype.growFlower = function ()
+    {
 
         this.flower.draw();
         this.flower.update();

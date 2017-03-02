@@ -5,7 +5,8 @@ var shrink, shake, intensity, grow = false,
     shed, gravity, flsize, grav, wind_dir, windcheck;
 var cnv;
 
-function setup() {
+function setup()
+{
     cnv = createCanvas(500, 500);
     var root = new Branch(createVector(width / 2, height), createVector(width / 2, height - 100));
     tree[0] = root;
@@ -52,31 +53,38 @@ function setup() {
 }
 var wind;
 
-function draw() {
+function draw()
+{
 
     background(51);
     fill(255);
     textSize(24);
     text("Number of branches = " + branchNumber, 15, 30);
 
-    if (windcheck.checked()) {
+    if (windcheck.checked())
+    {
         if (wind_dir.value() == "Left")
             wind = createVector(-0.2, 0);
         else if (wind_dir.value() == "Right")
             wind = createVector(0.2, 0);
     }
-    for (var i = 0; i < tree.length; i++) {
+    for (var i = 0; i < tree.length; i++)
+    {
         tree[i].show();
         if (tree[i].flower)
             tree[i].flower.size = flsize.value();
-        if (shake.checked()) {
+        if (shake.checked())
+        {
             tree[i].shake(intensity.value());
         }
-        if (!tree[i].grown && grow && tree[i].flower) {
+        if (!tree[i].grown && grow && tree[i].flower)
+        {
             tree[i].growFlower();
         }
-        if (shed && tree[i].flower) {
-            if (grav.checked()) {
+        if (shed && tree[i].flower)
+        {
+            if (grav.checked())
+            {
                 tree[i].flower.applyForce(gravity);
             }
             if (windcheck.checked())
@@ -87,16 +95,20 @@ function draw() {
     }
 }
 
-function shedFlowers() {
+function shedFlowers()
+{
     if (grow)
         shed = true;
     flowers.splice(0, flowers.length);
 }
 
-function growFlowers() {
+function growFlowers()
+{
     grow = true;
-    for (var i = 0; i < tree.length; i++) {
-        if (!tree[i].grown) {
+    for (var i = 0; i < tree.length; i++)
+    {
+        if (!tree[i].grown)
+        {
             var flower = new Flower(tree[i]);
             flowers.push(flower);
             tree[i].setFlower(flower);
@@ -105,16 +117,20 @@ function growFlowers() {
     shed = false;
 }
 
-function saveTree() {
+function saveTree()
+{
     saveCanvas(cnv, "tree", "png");
 
 }
 
 
-function branchIt() {
+function branchIt()
+{
 
-    for (var i = tree.length - 1; i >= 0; i--) {
-        if (!tree[i].grown) {
+    for (var i = tree.length - 1; i >= 0; i--)
+    {
+        if (!tree[i].grown)
+        {
             tree.push(tree[i].spawnA(shrink.value()));
             tree.push(tree[i].spawnB(shrink.value()));
             branchNumber += 2;
