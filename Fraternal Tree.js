@@ -58,7 +58,7 @@ function draw()
 
     background(51);
     fill(255);
-    textSize(24);
+    textSize(20);
     text("Number of branches = " + branchNumber, 15, 30);
 
     if (windcheck.checked())
@@ -137,4 +137,5 @@ function branchIt()
         }
         tree[i].grown = true;
     }
+    if (grow && !shed) growFlowers();
 }

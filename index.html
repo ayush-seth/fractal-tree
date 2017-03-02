@@ -1,120 +1,130 @@
 <!DOCTYPE html>
-<html>	
-	<head>
-		<title>Fractal Tree Generator</title>		
-		<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-	<style>
-			h1,	h2,	h3 {
-		font-family: 'Exo 2', sans-serif;
-	}
+<html>
 
-	body {
-		font-family: 'Lato', sans-serif;
-		text-align: center;
-		background-image: url("./img/bg2.jpg");
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-size: cover;
-	}
+<head>
+    <title>Fractal Tree Generator</title>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <style>
+        h1,
+        h2,
+        h3 {
+            font-family: 'Exo 2', sans-serif;
+        }
 
-	ul {
-		list-style-position: inside;
-	}
+        body {
+            font-family: 'Lato', sans-serif;
+            text-align: center;
+            background-image: url("./img/bg2.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
 
-	div {
-		color: #fff;
-	}
-	p {
-		color: #fff;
-	}
-	#butHolder button
-	{
-		padding:10px;
-		border:1px solid #fff;
-		font-family: 'Exo 2', sans-serif;
-		background:transparent;
-		color:#fff;
-		font-size:14px;
-		font-weight:bold;
-		width:150px;
-		cursor:pointer;
-		transition:0.3s all;
-		margin-bottom:10px;
-	}
-	#butHolder button:hover	
-	{
-		color:#333;
-		background:#fff;
-	}
-	#elementsContainer {
-		text-align:center;
-	}
-	#elementsContainer td 
-	{
-		padding:10px;
-		height:120px;
-		text-align:center;
-		width:150px;
-		color:#222;
-		font-weight:bold;
-		border:1px solid #222;
-		transition:0.3s all;
-	}
-	#elementsContainer td label
-	{
-		color:#222;
-	}
-	#elementsContainer td label {
-		transition:0.3s all;	
-	}
-	#elementsContainer td:hover	{
-		background:#222;	
-		color:#fff;
-	}
-	#elementsContainer td:hover label {
-		color:#fff;
-	}
-	.pull-left {
-		float:left;
-	}
-	.pull-right	{
-		float:right;
-	}
-	</style>
-		
-		<body>
-			<h1>Fractal Tree Generator</h1>
-			<h2>General Instructions</h2>
-			<ul>
-				<li>Click on canvas to create branches.</li>
-				<li>Use the checkbox to control shaking</li>
-				<li>Use the buttons to grow and shed leaves</li>
-			</ul>
-			<h4><i>* For smooth animations keep the branch number under 510</i></h3>
-			
+        ul {
+            list-style-position: inside;
+        }
+
+        div {
+            color: #fff;
+        }
+
+        p {
+            color: #fff;
+        }
+
+        #butHolder button {
+            padding: 10px;
+            border: 1px solid #fff;
+            font-family: 'Exo 2', sans-serif;
+            background: transparent;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            width: 150px;
+            cursor: pointer;
+            transition: 0.3s all;
+            margin-bottom: 10px;
+        }
+
+        #butHolder button:hover {
+            color: #333;
+            background: #fff;
+        }
+
+        #elementsContainer {
+            text-align: center;
+        }
+
+        #elementsContainer td {
+            padding: 10px;
+            height: 120px;
+            text-align: center;
+            width: 150px;
+            color: #222;
+            font-weight: bold;
+            border: 1px solid #222;
+            transition: 0.3s all;
+        }
+
+        #elementsContainer td label {
+            color: #222;
+        }
+
+        #elementsContainer td label {
+            transition: 0.3s all;
+        }
+
+        #elementsContainer td:hover {
+            background: #222;
+            color: #fff;
+        }
+
+        #elementsContainer td:hover label {
+            color: #fff;
+        }
+
+        .pull-left {
+            float: left;
+        }
+
+        .pull-right {
+            float: right;
+        }
+    </style>
+
+    <body>
+        <h1>Fractal Tree Generator</h1>
+        <h2>General Instructions</h2>
+        <ul>
+            <li>Click on canvas to create branches.</li>
+            <li>Use the checkbox to control shaking</li>
+            <li>Use the buttons to grow and shed leaves</li>
+        </ul>
+        <h4><i>* For smooth animations keep the branch number under 510</i></h3>
+
 			<br>
-			<div id="butHolder"></div>	
+			<div id="butHolder"></div>
 			<center>
 				<table>
 					<tr>
 						<td>
-							<table id="elementsContainer">		
+							<table id="elementsContainer">
 								<tr>
 									<td id="shaking">
-									</td>			
-								</tr>				
+									</td>
+								</tr>
 								<tr>
 									<td>
 										New branch size<br>(Relative to parent branch)
 										<div id="shrink"></div>
-									</td>			
+									</td>
 								</tr>
 								<tr>
 									<td>
 										Intensity of shaking
 										<div id="shake" ></div>
-									</td>			
+									</td>
 								</tr>
 							</table>
 						</td>
@@ -122,7 +132,7 @@
 							<div id="canvasParent"></div>
 						</td>
 						<td>
-							<table id="elementsContainer">		
+							<table id="elementsContainer">
 								<tr><td id="gravity"></td></tr>
 								<tr>
 									<td id="cpicker">
@@ -140,19 +150,20 @@
 							</table>
 						</td>
 					</tr>
-					<tr>	
+					<tr>
 						<td id="wind" style="text-align:center;" colspan="3">
 						</td>
 					</tr>
-				</table></center>	
-				
-				<p>Currently working on bug : Creating new branches will make leaves disappear (They reappear if you grow them again)</p>
-				<br>	
-				<h2 style="color:#fff;">Change logs :</h2>	
-				<ul style="color:#fff">		
+				</table></center>
+
+				<h3>FIXED : Creating new branches will make leaves disappear</h3>
+				<h3>If you experience any bugs or have a feature request, submit <a href="https://github.com/MasterYushi/Fractal-Tree-Object-Oriented-/issues">HERE</a></h3>
+				<br>
+				<h2 style="color:#fff;">Change logs :</h2>
+				<ul style="color:#fff">
 					<li>Added gravity and wind forces</li>
 					<li>Added a colour picker for leaves</li>
-					<li>Now you can save your creations as a png file</li>		
+					<li>Now you can save your creations as a png file</li>
 				</ul>
 				<script language="javascript" type="text/javascript" src="lib\p5\p5.js">
 				</script>
@@ -169,4 +180,3 @@
 		</body>
 		<script>
 		</html>
-		
