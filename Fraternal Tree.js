@@ -2,38 +2,42 @@ var tree = [];
 var flowers = [];
 var branchNumber = 0;
 var shrink, shake, intensity, grow = false,
-    shed, gravity, flsize, grav, wind_dir, windcheck;
+    shed, gravity, flsize, grav, wind_dir, windcheck, angleBox, angle;
 var cnv;
 
 function setup()
 {
     cnv = createCanvas(500, 500);
+    angle = PI / 4;
+
     var root = new Branch(createVector(width / 2, height), createVector(width / 2, height - 100));
+    root.thickness = 2.5;
     tree[0] = root;
+
     shake = createCheckbox("Shaking", false);
     shake.parent("shaking");
-    //shake.position(windowWidth-470, 1000);
 
     intensity = createSlider(0.1, 2, 0.5, 0);
     intensity.parent("shake");
+
     cnv.parent("canvasParent");
-    flsize = createSlider(5, 15, 7, 0);
+
+    flsize = createSlider(5, 15, 5, 0);
     flsize.parent("flsize");
 
     shrink = createSlider(0.30, 1, 0.75, 0);
     shrink.parent("shrink");
 
-
     var grows = createButton("Grow leaves");
-    grows.mousePressed(growFlowers);
+    grows.mouseClicked(growFlowers);
     grows.parent("butHolder");
 
     var sheds = createButton("Shed Leaves");
-    sheds.mousePressed(shedFlowers);
+    sheds.mouseClicked(shedFlowers);
     sheds.parent("butHolder");
 
     var save = createButton("Save Tree as png");
-    save.mousePressed(saveTree);
+    save.mouseClicked(saveTree);
     save.parent("butHolder");
 
     gravity = createVector(0, 0.3);
@@ -49,7 +53,17 @@ function setup()
     wind_dir.value("Right");
     wind_dir.parent("wind");
 
-    cnv.mousePressed(branchIt);
+    angleBox = createInput();
+    angleBox.input(
+        function ()
+        {
+            angle = radians(angleBox.value());
+        }
+    )
+    angleBox.parent("butHolder")
+    angleBox.elt.placeholder = "Branch angle";
+
+    cnv.mouseClicked(branchIt);
 }
 var wind;
 
@@ -57,9 +71,13 @@ function draw()
 {
 
     background(51);
+
+    push();
     fill(255);
     textSize(20);
+    strokeWeight(0);
     text("Number of branches = " + branchNumber, 15, 30);
+    pop();
 
     if (windcheck.checked())
     {
@@ -68,31 +86,31 @@ function draw()
         else if (wind_dir.value() == "Right")
             wind = createVector(0.2, 0);
     }
-    for (var i = 0; i < tree.length; i++)
+    tree.forEach(function (branch)
     {
-        tree[i].show();
-        if (tree[i].flower)
-            tree[i].flower.size = flsize.value();
+        branch.show();
+        if (branch.flower)
+            branch.flower.size = flsize.value();
         if (shake.checked())
         {
-            tree[i].shake(intensity.value());
+            branch.shake(intensity.value());
         }
-        if (!tree[i].grown && grow && tree[i].flower)
+        if (!branch.grown && grow && branch.flower)
         {
-            tree[i].growFlower();
+            branch.growFlower();
         }
-        if (shed && tree[i].flower)
+        if (shed && branch.flower)
         {
             if (grav.checked())
             {
-                tree[i].flower.applyForce(gravity);
+                branch.flower.applyForce(gravity);
             }
             if (windcheck.checked())
-                tree[i].flower.applyForce(wind);
-            if (!tree[i].flower.done)
-                tree[i].flower.shed();
+                branch.flower.applyForce(wind);
+            if (!branch.flower.done)
+                branch.flower.shed();
         }
-    }
+    });
 }
 
 function shedFlowers()
@@ -105,15 +123,15 @@ function shedFlowers()
 function growFlowers()
 {
     grow = true;
-    for (var i = 0; i < tree.length; i++)
+    tree.forEach(function (branch)
     {
-        if (!tree[i].grown)
+        if (!branch.grown)
         {
-            var flower = new Flower(tree[i].end);
+            var flower = new Flower(branch.end);
             flowers.push(flower);
-            tree[i].setFlower(flower);
+            branch.setFlower(flower);
         }
-    }
+    });
     shed = false;
 }
 
@@ -123,19 +141,29 @@ function saveTree()
 
 }
 
+var thickness = 2.5;
 
 function branchIt()
 {
-
     for (var i = tree.length - 1; i >= 0; i--)
     {
-        if (!tree[i].grown)
+        var branch = tree[i];
+        if (!branch.grown)
         {
-            tree.push(tree[i].spawnA(shrink.value()));
-            tree.push(tree[i].spawnB(shrink.value()));
+            var a = branch.spawnA(shrink.value(), angle);
+            var b = branch.spawnB(shrink.value(), angle);
+
+            a.thickness = thickness - 0.25;
+            b.thickness = thickness - 0.25;
+
+            tree.push(a);
+            tree.push(b);
             branchNumber += 2;
         }
         tree[i].grown = true;
     }
+    if (thickness != 0)
+        thickness -= 0.25;
+
     if (grow && !shed) growFlowers();
 }
