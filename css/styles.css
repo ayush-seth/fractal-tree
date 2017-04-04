@@ -5,7 +5,7 @@ h1, h2, h3 {
 
 body {
     background-attachment : fixed;
-    background-image      : url("./img/bg2.jpg");
+    background-image      : url("../img/bg2.jpg");
     background-repeat     : no-repeat;
     background-size       : cover;
     font-family           : 'Lato', sans-serif;
