@@ -1,22 +1,25 @@
-class Flower
-{
-    constructor(branch)
-    {
+class Flower {
+    constructor(branch) {
         this.velocity = createVector(0, 0);
         this.acceleration = createVector(0, 0);
         this.pos = this.branch = branch;
         this.done = false;
         this.lifespan = 255;
+        this.shape = "Circle";
     }
-    draw()
-    {
+    draw() {
         var colour = document.getElementById("colour").jscolor.rgb;
         fill(colour[0], colour[1], colour[2], this.lifespan);
         noStroke();
-        ellipse(this.pos.x, this.pos.y, this.size, this.size);
+        if (this.shape == "Circle") {
+            ellipse(this.pos.x, this.pos.y, this.size, this.size);
+        } 
+        else if (this.shape == "Square") {
+            rectMode(CENTER);
+            rect(this.pos.x, this.pos.y, this.size, this.size);
+        }
     }
-    update()
-    {
+    update() {
         this.pos.add(this.velocity);
         this.velocity.add(this.acceleration);
 
@@ -24,16 +27,14 @@ class Flower
         if (this.done)
             this.lifespan -= 0.8;
     }
-    shed()
-    {
+    shed() {
         this.applyForce(createVector(random(-1, 1), random(-1, -0.1)));
         this.update();
         this.draw();
         this.done = true;
         this.pos = this.branch.copy();
     }
-    applyForce(force)
-    {
+    applyForce(force) {
         this.acceleration.add(force);
     }
 }
