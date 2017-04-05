@@ -18,6 +18,17 @@ class Flower {
             rectMode(CENTER);
             rect(this.pos.x, this.pos.y, this.size, this.size);
         }
+        else if (this.shape == "Wisp") {
+            push();
+                star(this.pos.x, this.pos.y, this.size/2, this.size, 8);
+            pop();
+        }
+        else if (this.shape == "Triangle") {
+            push();
+                translate(this.pos.x, this.pos.y)
+                triangle(0, -this.size, -this.size, this.size/2, this.size, this.size/2);
+            pop();
+        }
     }
     update() {
         this.pos.add(this.velocity);
@@ -37,4 +48,19 @@ class Flower {
     applyForce(force) {
         this.acceleration.add(force);
     }
+}
+
+function star(x, y, radius1, radius2, npoints) {
+  var angle = TWO_PI / npoints;
+  var halfAngle = angle/2.0;
+  beginShape();
+  for (var a = 0; a < TWO_PI; a += angle) {
+    var sx = x + cos(a) * radius2;
+    var sy = y + sin(a) * radius2;
+    vertex(sx, sy);
+    sx = x + cos(a+halfAngle) * radius1;
+    sy = y + sin(a+halfAngle) * radius1;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
 }

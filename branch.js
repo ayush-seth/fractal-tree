@@ -6,7 +6,7 @@ class Branch
         this.end = end;
         this.grown = false;
         this.flower = null;
-        this.thickness;
+        this.thickness = 2.5;
     }
     setFlower(flower)
     {

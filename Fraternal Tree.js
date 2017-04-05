@@ -16,6 +16,8 @@ function setup() {
     shape = createRadio();
     shape.option("Circle");
     shape.option("Square");
+    shape.option("Wisp");
+    shape.option("Triangle");
     shape.value("Circle");
     shape.parent("shape");
 
@@ -93,7 +95,18 @@ function draw() {
         flowers.forEach(function(flower) {
             flower.shape = "Square";
         });
-    } else {
+    } 
+    else if (shape.value() == "Wisp") {
+        flowers.forEach(function(flower) {
+            flower.shape = "Wisp";
+        });
+    } 
+    else if (shape.value() == "Triangle") {
+        flowers.forEach(function(flower) {
+            flower.shape = "Triangle";
+        });
+    }
+    else {
         flowers.forEach(function(flower) {
             flower.shape = "Circle";
         });
