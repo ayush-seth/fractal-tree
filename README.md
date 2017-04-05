@@ -7,6 +7,22 @@ See the Tree Generator in action [**HERE**](https://masteryushi.github.io/Fracta
 #### With so many customization options, you can end up with something that doesn't look like a tree at all!
 If you end up with an interesting pattern (it doesn't have to be a tree!), be sure to share it with me!
 
+# Some stunning paterns generated using this -
+## #1
+![](https://image.ibb.co/b85Cdv/tree_9.png)
+## #2
+![](https://image.ibb.co/jtHErF/tree_4.png)
+## #3
+![](https://image.ibb.co/n1YXdv/tree_6.png)
+## #4
+![](https://image.ibb.co/gOpSBF/tree_7.png)
+## #5
+![](https://image.ibb.co/bZFdJv/tree_3.png)
+## #6
+![](https://image.ibb.co/mXKurF/tree_8.png)
+## #7
+![](https://image.ibb.co/kwYXdv/tree_5.png)
+
 ## Why not recursion?
 Taking the object oriented approach over the more trivial **recursive** one allows for much more messing around as each branch is a seperate object.
 This opens up a lot of possibilities for animations and other stuff which wouldn't be possible with a recursive approach.
