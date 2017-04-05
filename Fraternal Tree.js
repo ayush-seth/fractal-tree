@@ -17,6 +17,7 @@ function setup() {
     shape.option("Circle");
     shape.option("Square");
     shape.value("Circle");
+    shape.parent("shape");
 
     shake = createCheckbox("Shaking", false);
     shake.parent("shaking");
