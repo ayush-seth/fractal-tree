@@ -14,14 +14,18 @@ If you end up with an interesting pattern (it doesn't have to be a tree!), be su
 ![](https://image.ibb.co/jtHErF/tree_4.png)
 ## #3
 ![](https://image.ibb.co/n1YXdv/tree_6.png)
-## #4
-![](https://image.ibb.co/gOpSBF/tree_7.png)
+## #4(New spiderman logo?)
+![](https://image.ibb.co/c3Sifk/17910759_1348612685223478_2082178000_n.png)
 ## #5
 ![](https://image.ibb.co/bZFdJv/tree_3.png)
 ## #6
 ![](https://image.ibb.co/mXKurF/tree_8.png)
 ## #7
 ![](https://image.ibb.co/kwYXdv/tree_5.png)
+## #8 
+![](https://image.ibb.co/gOpSBF/tree_7.png)
+## #9
+![](https://image.ibb.co/iycifk/tree.png)
 
 ## Why not recursion?
 Taking the object oriented approach over the more trivial **recursive** one allows for much more messing around as each branch is a seperate object.
