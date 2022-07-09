@@ -1,6 +1,6 @@
 # Object Oriented Fractal Tree :
 
-This project is made by me as a hobby using the [**p5.js**](p5js.org) library. It takes an object oriented approach towards building a fractal tree from branch objects and is built off and inspired from [**Daniel Shiffmann's**](https://github.com/shiffman) p5 projects, it takes its base from his code and extends it providing more customization for you to mess around with and some other features. You can check out his youtube channel [here.](https://www.youtube.com/user/shiffman)
+This project was made by me as a hobby using the [**p5.js**](p5js.org) library. It takes an object oriented approach towards building a fractal tree from branch objects and is built off and inspired from [**Daniel Shiffmann's**](https://github.com/shiffman) p5 projects, it takes its base from his code and extends it providing more customization for you to mess around with and some other features.
 
 See the Fractal Generator in action [**here.**](https://masteryushi.github.io/Fractal-Tree-Object-Oriented-/)
 
